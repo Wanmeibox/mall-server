@@ -9,6 +9,8 @@ var fs = require("fs");
 
 var users = require('./routes/users');
 var admin = require('./routes/admin');
+var goods = require('./routes/goods');
+var subject = require('./routes/subject');
 
 var app = express();
 
@@ -26,8 +28,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res,next){
+    var ip = req.connection.remoteAddress;
+    console.log(ip);
+    next();
+});
+
+app.use('/api',function(req, res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 app.use('/api/users', users);
 app.use('/api/admin', admin);
+app.use('/api/goods', goods);
+app.use('/api/subject', subject);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

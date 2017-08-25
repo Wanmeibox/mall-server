@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var admin = require('./routes/admin');
 var goods = require('./routes/goods');
 var subject = require('./routes/subject');
+var wechat = require('./routes/wechat');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use('/api/users', users);
 app.use('/api/admin', admin);
 app.use('/api/goods', goods);
 app.use('/api/subject', subject);
+app.use('/api/wechat', wechat);
 
 
 
